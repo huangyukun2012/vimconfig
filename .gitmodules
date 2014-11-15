@@ -7,3 +7,27 @@
 [submodule "bundle/neobundle.vim"]
 	path = bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "bundle/vim-commentary"]
+	path = bundle/vim-commentary
+	url = git://github.com/tpope/vim-commentary.git
+[submodule "bundle/vim-easymotion"]
+	path = bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "bundle/vim-multicursor"]
+	path = bundle/vim-multicursor
+	url = https://github.com/paradigm/vim-multicursor.git
+[submodule "bundle/vim-nerdtree-tabs"]
+	path = bundle/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs
+[submodule "bundle/vim-PinyinSearch"]
+	path = bundle/vim-PinyinSearch
+	url = https://github.com/ppwwyyxx/vim-PinyinSearch.git
+[submodule "bundle/vimwiki"]
+	path = bundle/vimwiki
+	url = https://github.com/vim-scripts/vimwiki.git
