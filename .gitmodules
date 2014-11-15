@@ -4,6 +4,3 @@
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
-[submodule "neobundle.vim"]
-	path = neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim.git
