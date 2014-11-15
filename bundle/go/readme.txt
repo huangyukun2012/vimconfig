@@ -1,3 +1,5 @@
+Note: this plugins could be found in the source code of golang
+
 Vim plugins for Go (http://golang.org)
 ======================================
 
@@ -5,7 +7,7 @@ To use all the Vim plugins, add these lines to your vimrc.
 
   set rtp+=$GOROOT/misc/vim
   filetype plugin indent on
-  syntax on
+syntax on
 
 If you want to select fewer plugins, use the instructions in the rest of
 this file.
