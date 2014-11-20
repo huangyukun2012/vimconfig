@@ -60,7 +60,6 @@ map wm :WMToggle<cr>
 map <C-F11> 	:vs<CR>
 nmap ,a			:tabnew<cr>	
 nmap ,g			"+p 
-map	<C-n> 		<C-w>w
 map <S-F5> 		:call Debug()<cr>
 map <F5> 		:call RunProgram()<cr>
 map <F6> 		:!python %<cr>
@@ -69,17 +68,6 @@ map <F8> 		:call RunWap()<cr>
 imap [ 			[]<left>
 imap ( 			()<left>
 imap {			{}<left>
-imap ,,		<Esc>
-imap ,.		<end>
-imap <C-h>	<home>
-imap <C-l>  <left>
-imap ..		<right>
-imap ,e		=
-imap ,a		+
-imap ,p		-
-imap ,m		*
-imap ,d		/
-imap ,l		_
 map	 rel	:set relativenumber<cr>
 map	 nor	:set norelativenumber<cr>
 map	 nu		:set nu<cr>
@@ -159,3 +147,5 @@ map		?	:call PinyinSearch()<cr>
 map		vim	:tabnew<cr>:e ~/.vimrc<cr>
 "date and time and author
 map		dat	:read !date<cr>	
+
+"multiple-cursor
