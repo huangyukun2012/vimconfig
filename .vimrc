@@ -8,7 +8,7 @@ endif
 set nu
 set t_Co=256
 set bg=dark
-"colorscheme solarized
+" colorscheme solarized
 colorscheme desert
 autocmd BufEnter * lcd %:p:h
 
@@ -64,7 +64,7 @@ map <S-F5> 		:call Debug()<cr>
 map <F5> 		:call RunProgram()<cr>
 map <F6> 		:!python %<cr>
 map <F7> 		:call Compile() <cr>
-map <F8> 		:call RunWap()<cr>
+map <F8> 		:call CompileDir() <cr>
 imap [ 			[]<left>
 imap ( 			()<left>
 imap {			{}<left>
@@ -72,6 +72,9 @@ map	 rel	:set relativenumber<cr>
 map	 nor	:set norelativenumber<cr>
 map	 nu		:set nu<cr>
 map	 no 	:set nonu<cr>
+
+map ,p	 :set paste<cr>
+map ,np	 :set nopaste<cr>
 "=========================================begin 函数定义:文件编译与运行============================================
 
 
@@ -92,6 +95,13 @@ if &filetype == 'md'
 	exec "!md2html  %"
 endif
 endfunc 
+
+func! CompileDir()
+	exec "w"
+	if &filetype == 'go'
+		exec "!go build"
+	endif
+endfunc
 
 func RunProgram() 
 if &filetype == 'md'
