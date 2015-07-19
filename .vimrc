@@ -24,7 +24,7 @@ set tabstop=4 "让一个tab等于4个空格
 set vb t_vb=
 set nowrap "不自动换行
 set cursorline
-set cursorcolumn
+
 set wrap
 filetype indent on
 set autoindent
@@ -47,13 +47,19 @@ set gfw=幼圆:h10:cGB2312
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
+
+"Plugins
+"======================
 "taglist 设置
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
+let Tlist_Ctags_Cmd="/usr/bin/ctags"
+map tl	:Tlist<cr>
 
 "winManager config
 let g:winManagerWindowLayout='FileExplorer|TagList'
 map wm :WMToggle<cr>
+let g:AutoOpenWinManager = 1
 
 "=========================================快捷键设置===============================================
 
@@ -62,7 +68,7 @@ nmap ,a			:tabnew<cr>
 nmap ,g			"+p 
 map <S-F5> 		:call Debug()<cr>
 map <F5> 		:call RunProgram()<cr>
-map <F6> 		:!python %<cr>
+map <F6> 		:call PthreadCompile()<cr>
 map <F7> 		:call Compile() <cr>
 map <F8> 		:call CompileDir() <cr>
 imap [ 			[]<left>
@@ -77,15 +83,28 @@ map ,p	 :set paste<cr>
 map ,np	 :set nopaste<cr>
 "=========================================begin 函数定义:文件编译与运行============================================
 
+func! PthreadCompile()
+	exec "w"
+	if &filetype == 'c'
+		exec "!color_compile gcc  % -g -o %< -lpthread"
+	endif
+	if &filetype == 'cpp'
+		exec "!color_compile g++ % -g -o %< -lpthread"
+	endif
+	exec "!chmod +x %<"
+endfunc
+
+	
 
 func! Compile() 
 exec "w" 
 if &filetype == 'c' 
-	exec "!gcc -std=c99 % -g -o %<"
+	exec "!color_compile gcc -std=c99 % -g -o %<"
 	exec "!chmod +x %<"
+
 endif 
 if &filetype == 'cpp' 
-	exec "!g++4.8.3 -std=c++11 % -g -o %< "
+	exec "!color_compile g++ -std=c++11 % -g -o %< "
 	exec "!chmod +x %< "
 endif
 if &filetype == 'go'
@@ -159,3 +178,22 @@ map		vim	:tabnew<cr>:e ~/.vimrc<cr>
 map		dat	:read !date<cr>	
 
 "multiple-cursor
+
+"airline
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '>'
+let g:airline_right_sep = '<'
+let g:airline_section_b = '%{getcwd()}'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" set the status line
+set laststatus=2
+"fronts
+let g:airline_powerline_fonts = 21
+
+"ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
