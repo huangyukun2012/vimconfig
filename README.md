@@ -4,10 +4,10 @@ vimconfig
 This is a vim config files managed by pathogen.After download the project, you should take a minute to know how `pathogen` [click me](https://github.com/tpope/vim-pathogen) works.
 
 Features:
-*	1.Some plugins which are used very often.
-*	2.An easy way of extension, you can add anything as an submodule.
-*	3.Easy to install and update: you need only one command.
-*	4.Easy to compile and debug program: you need not exit your vim any more.
+*	Some plugins which are used very often.
+*	An easy way of extension, you can add anything as an submodule.
+*	Easy to install and update: you need only one command.
+*	Easy to compile and debug program: you need not exit your vim any more.
 
 ##1. what plugins are included  in this project?
 
@@ -50,6 +50,7 @@ With this plugin, you can management much easier.
 	runtime bundle/vim-pathogen/autoload/pathogen.vim
 	call pathogen#infect()
 **invoe**
+
 Do nothing.
 ###1.7 vimwiki
 ignore
@@ -72,6 +73,7 @@ This is for search PinYin.
 	let g:PinyinSearch_Dict = '/home/huangyk/.vim/bundle/vim-PinyinSearch/PinyinSearch.dict'
 	map		?	:call PinyinSearch()<cr>
 **invoke**
+
 Just input `?` in NORMAL model.
 ###1.14 airline
 This is usefull when you want to display some info about the pwd, model, filename, encode, and so on.
@@ -91,7 +93,8 @@ This is usefull when you want to display some info about the pwd, model, filenam
 	" set the status line
 	set laststatus=2
 **invoe**
-Auto.
+
+Do nothing.
 ###1.15 CtrlP
 When there are many files in your project, chances are that you want to open the files which were opened recently.This plugin helps you to do this.
 
@@ -102,6 +105,7 @@ When there are many files in your project, chances are that you want to open the
 	let g:ctrlp_cmd = 'CtrlP'
 
 **invode**
+
 Input `<c-p>` in NORMAL model.
 
 ###1.16 taglist
@@ -115,6 +119,7 @@ In some IDE like Visual Studio or Eclipse, we can see the name of typedef,Class,
 	let Tlist_Ctags_Cmd="/usr/bin/ctags"
 	map tl	:Tlist<cr>
 **invode**
+
 Input `tl` in NORMAL model.
 
 ###1.17 winManager
@@ -126,6 +131,7 @@ This plugin will help you manage the windows in one terminal.
 	map wm :WMToggle<cr>
 	let g:AutoOpenWinManager = 1
 **invoke**
+
 Input `wm` in VIM NORMAL model.
 
 ##2. Easy compile&&debug
@@ -133,27 +139,28 @@ Input `wm` in VIM NORMAL model.
 When you use `visual studio`, you can use `F7` to compile and `F5` to debug. Now you can also do this with our vimrc.
 
 **Usage**
+
 You can find this by "map key" in vimrc.
-## Installation
+##3 Installation
 
 	git clone https://github.com/huangyukun2012/vimconfig.git 	
 	./install
 
-## extention
+##4. extention
 
 **How to install new plugin**
 
-* 1.Download a plugin from github in to directory of `bundle`
+* Download a plugin from github in to directory of `bundle`
 
 	git clone $URL $PATH
 
-* 2.Add  this plugin as an submodule to your project 
+* Add  this plugin as an submodule to your project 
 	
 You can use git command to do this:
 
     git submodule add $URL $PATH
 
-* 3.Add the modification to the project, commit , and push it to your repository.
+* Add the modification to the project, commit , and push it to your repository.
     
 	git add $PATH
 	git commit -m $MSG
