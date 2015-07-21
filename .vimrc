@@ -48,29 +48,11 @@ set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 
-"Plugins
-"======================
-"taglist 设置
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Ctags_Cmd="/usr/bin/ctags"
-map tl	:Tlist<cr>
-
-"winManager config
-let g:winManagerWindowLayout='FileExplorer|TagList'
-map wm :WMToggle<cr>
-let g:AutoOpenWinManager = 1
-
 "=========================================快捷键设置===============================================
 
 map <C-F11> 	:vs<CR>
 nmap ,a			:tabnew<cr>	
 nmap ,g			"+p 
-map <S-F5> 		:call Debug()<cr>
-map <F5> 		:call RunProgram()<cr>
-map <F6> 		:call PthreadCompile()<cr>
-map <F7> 		:call Compile() <cr>
-map <F8> 		:call CompileDir() <cr>
 imap [ 			[]<left>
 imap ( 			()<left>
 imap {			{}<left>
@@ -81,8 +63,24 @@ map	 no 	:set nonu<cr>
 
 map ,p	 :set paste<cr>
 map ,np	 :set nopaste<cr>
+
+map		vim	:tabnew<cr>:e ~/.vimrc<cr>
+
+"Helptags
+set tags=tags;
+"set autochdir
+nmap ,t :set tags=tags<left><left><left><left>
+
+"close scratch when complete
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 "=========================================begin 函数定义:文件编译与运行============================================
 
+map <S-F5> 		:call Debug()<cr>
+map <F5> 		:call RunProgram()<cr>
+map <F6> 		:call PthreadCompile()<cr>
+map <F7> 		:call Compile() <cr>
+map <F8> 		:call CompileDir() <cr>
 func! PthreadCompile()
 	exec "w"
 	if &filetype == 'c'
@@ -94,7 +92,6 @@ func! PthreadCompile()
 	exec "!chmod +x %<"
 endfunc
 
-	
 
 func! Compile() 
 exec "w" 
@@ -144,23 +141,18 @@ exec "!chmod +x %"
 exec "!python %"
 endfunc 
 
-"================================相关插件============================================
+"===============================Plugins============================================
 filetype plugin indent on
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
-
+"nerd tree
 let g:nerdtree_tabs_open_on_console_startup=0 
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 map <leader>n <plug>NERDTreeTabsToggle <CR> 
+
 "EasyMotion
-"Helptags
-set tags=tags;
-"set autochdir
-nmap ,t :set tags=tags<left><left><left><left>
-"close scratch when complete
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"
 
 "commentary
 autocmd FileType python,shell set commentstring=#\ %s                 " 设置Python注释字符
@@ -172,10 +164,6 @@ nmap	,u	gcu
 let g:PinyinSearch_Dict = '/home/huangyk/.vim/bundle/vim-PinyinSearch/PinyinSearch.dict'
 map		?	:call PinyinSearch()<cr>
 
-"vimrc
-map		vim	:tabnew<cr>:e ~/.vimrc<cr>
-"date and time and author
-map		dat	:read !date<cr>	
 
 "multiple-cursor
 
@@ -191,9 +179,20 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " set the status line
 set laststatus=2
-"fronts
-let g:airline_powerline_fonts = 21
 
 "ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+
+"taglist 设置
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Ctags_Cmd="/usr/bin/ctags"
+map tl	:Tlist<cr>
+
+"winManager config
+let g:winManagerWindowLayout='FileExplorer|TagList'
+map wm :WMToggle<cr>
+let g:AutoOpenWinManager = 1
+
