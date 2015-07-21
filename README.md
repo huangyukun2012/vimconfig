@@ -46,14 +46,16 @@ To invoke it , just put `\n` in vim NORMAL mode.
 
 1. Download a plugin from github in to directory of `bundle`
 
-`git clone $URL $PATH`
+	git clone $URL $PATH
 
 2. Add  this plugin as an submodule to your project 
 	
 You can use git command to do this:
-`git submodule add $URL $PATH`
+
+	git submodule add $URL $PATH
 
 3. Add the modification to the project, commit , and push it to your repository.
-`git add $PATH
-git commit -m $msg
-git push origin master`
+
+	git add $PATH
+	git commit -m $msg
+	git push origin master
