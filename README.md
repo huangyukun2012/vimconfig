@@ -6,10 +6,10 @@ This is a vim config files managed by pathogen.
 ## what plugins are included  in this project?
 
 ###go
-	This is syntax hight for go language. You need not do nothing to invoke it.
+This is syntax hight for go language. You need not do nothing to invoke it.
 ###nerdtree
-	With this plugin, you can brow your file in one project more easily.
-	
+With this plugin, you can brow your file in one project more easily.
+
 To invoke it , just put `\n` in vim NORMAL mode.
 ###vim-commentary
 	
@@ -54,7 +54,6 @@ You can use git command to do this:
 `git submodule add $URL $PATH`
 
 3. Add the modification to the project, commit , and push it to your repository.
-
-	git add $PATH
-	git commit -m $msg
-	git push origin master
+`git add $PATH
+git commit -m $msg
+git push origin master`
