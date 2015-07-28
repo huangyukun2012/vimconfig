@@ -134,6 +134,30 @@ This plugin will help you manage the windows in one terminal.
 
 Input `wm` in VIM NORMAL model.
 
+###1.18 cscope
+This plugin will help you use tag more quickly. 
+
+You can find 
+* where the function is defined?
+* where the function is called?
+* which function is called by the function?
+
+**config**
+
+	"cscope
+	map cs ":cscope -Rbq<cr>"
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
+	"nmap<C-_>s :cs find s<C-R>=expand("<cword>")<CR><CR>)
+	" s: Find this C symbol
+	"    nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+    " g: Find this definition
+    nnoremap  ,fg :call cscope#find('g', expand('<cword>'))<CR><CR>
+    " d: Find functions called by this function
+    nnoremap  ,fd :call cscope#find('d', expand('<cword>'))<CR><CR>
+    " c: Find functions calling this function
+**invode**
+As you see in the config above, you can call it by `,fg` or `,fc`.
+
 ##2. Easy compile&&debug
 
 When you use `visual studio`, you can use `F7` to compile and `F5` to debug. Now you can also do this with our vimrc.

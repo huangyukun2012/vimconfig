@@ -60,7 +60,7 @@ map	 rel	:set relativenumber<cr>
 map	 nor	:set norelativenumber<cr>
 map	 nu		:set nu<cr>
 map	 no 	:set nonu<cr>
-
+map  ,bb		<C-b>
 map ,p	 :set paste<cr>
 map ,np	 :set nopaste<cr>
 
@@ -195,4 +195,28 @@ map tl	:Tlist<cr>
 let g:winManagerWindowLayout='FileExplorer|TagList'
 map wm :WMToggle<cr>
 let g:AutoOpenWinManager = 1
+
+"cscope
+map cs ":cscope -Rbq<cr>"
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+"nmap<C-_>s :cs find s<C-R>=expand("<cword>")<CR><CR>)
+" s: Find this C symbol
+"    nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+    " g: Find this definition
+    nnoremap  ,fg :call cscope#find('g', expand('<cword>'))<CR><CR>
+    " d: Find functions called by this function
+    nnoremap  ,fd :call cscope#find('d', expand('<cword>'))<CR><CR>
+    " c: Find functions calling this function
+   nnoremap  ,fc :call cscope#find('c', expand('<cword>'))<CR>
+    " t: Find this text string
+"    nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+    " e: Find this egrep pattern
+"    nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+    " f: Find this file
+"    nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+    " i: Find files #including this file
+"    nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
+
+"quickfix
+map ,cl :lcl<CR>
 

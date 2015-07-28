@@ -46,3 +46,6 @@
 [submodule "bundle/taglist.vim"]
 	path = bundle/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "bundle/cscope.vim"]
+	path = bundle/cscope.vim
+	url = https://github.com/vim-scripts/cscope.vim.git
