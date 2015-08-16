@@ -49,3 +49,21 @@
 [submodule "bundle/cscope.vim"]
 	path = bundle/cscope.vim
 	url = https://github.com/vim-scripts/cscope.vim.git
+[submodule "bundle/DrawIt"]
+	path = bundle/DrawIt
+	url = https://github.com/vim-scripts/DrawIt.git
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "bundle/grep.vim"]
+	path = bundle/grep.vim
+	url = https://github.com/vim-scripts/grep.vim.git
+[submodule "bundle/rainbow_parentheses.vim"]
+	path = bundle/rainbow_parentheses.vim
+	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git

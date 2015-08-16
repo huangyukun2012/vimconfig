@@ -1,6 +1,7 @@
 #!/bin/bash
 num=$#
-if [ num != 1 ];then
+if [ ! $num == 1 ];then
+	echo "you have input $num args"
 	echo "please put in the git dir you want to use as an git submodule"
 fi
 url=`cat $1/.git/config | grep \.git | awk '{print $3}'`

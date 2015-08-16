@@ -10,7 +10,7 @@ set t_Co=256
 set bg=dark
 " colorscheme solarized
 colorscheme desert
-autocmd BufEnter * lcd %:p:h
+" autocmd BufEnter * lcd %:p:h
 
 set nocompatible "不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题
 
@@ -22,16 +22,14 @@ syntax on "打开高亮
 set sw=4
 set tabstop=4 "让一个tab等于4个空格
 set vb t_vb=
-set nowrap "不自动换行
-set cursorline
 
 set wrap
-filetype indent on
 set autoindent
 
 set hlsearch "高亮显示结果
 set incsearch "在输入要搜索的文字时，vim会实时匹配
 set backspace=indent,eol,start whichwrap+=<,>,[,] "允许退格键的使用
+
 if(g:iswindows==1) "允许鼠标的使用
     "防止linux终端下无法拷贝
     if has('mouse')
@@ -40,40 +38,37 @@ if(g:iswindows==1) "允许鼠标的使用
     au GUIEnter * simalt ~x
 endif
 
-"字体的设置
+"front
 set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦
 set gfw=幼圆:h10:cGB2312
-"字符编码
+
+"encoding
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 
 "=========================================快捷键设置===============================================
 
-map <C-F11> 	:vs<CR>
-nmap ,a			:tabnew<cr>	
 nmap ,g			"+p 
 imap [ 			[]<left>
 imap ( 			()<left>
 imap {			{}<left>
+
 map	 rel	:set relativenumber<cr>
 map	 nor	:set norelativenumber<cr>
-map	 nu		:set nu<cr>
-map	 no 	:set nonu<cr>
-map  ,bb		<C-b>
+
 map ,p	 :set paste<cr>
 map ,np	 :set nopaste<cr>
 
+nmap ,a			:tabnew<cr>	
 map		vim	:tabnew<cr>:e ~/.vimrc<cr>
 
 "Helptags
 set tags=tags;
-"set autochdir
-nmap ,t :set tags=tags<left><left><left><left>
 
 "close scratch when complete
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 "=========================================begin 函数定义:文件编译与运行============================================
 
 map <S-F5> 		:call Debug()<cr>
@@ -143,6 +138,8 @@ endfunc
 
 "===============================Plugins============================================
 filetype plugin indent on
+let g:airline#extensions#bufferline#enabled = 0
+
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
@@ -152,7 +149,7 @@ let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 map <leader>n <plug>NERDTreeTabsToggle <CR> 
 
 "EasyMotion
-"
+"just type <leader><leader>w to invoke it
 
 "commentary
 autocmd FileType python,shell set commentstring=#\ %s                 " 设置Python注释字符
@@ -166,6 +163,11 @@ map		?	:call PinyinSearch()<cr>
 
 
 "multiple-cursor
+" Default mapping
+" let g:multi_cursor_next_key='<C-m>'
+ " let g:multi_cursor_prev_key='<C-p>'
+ " let g:multi_cursor_skip_key='<C-x>'
+ " let g:multi_cursor_quit_key='<Esc>'
 
 "airline
 if !exists('g:airline_symbols')
@@ -174,9 +176,9 @@ endif
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
 let g:airline_section_b = '%{getcwd()}'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
 " set the status line
 set laststatus=2
 
@@ -197,7 +199,6 @@ map wm :WMToggle<cr>
 let g:AutoOpenWinManager = 1
 
 "cscope
-map cs ":cscope -Rbq<cr>"
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 "nmap<C-_>s :cs find s<C-R>=expand("<cword>")<CR><CR>)
 " s: Find this C symbol
@@ -209,9 +210,9 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
     " c: Find functions calling this function
    nnoremap  ,fc :call cscope#find('c', expand('<cword>'))<CR>
     " t: Find this text string
-"    nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+   nnoremap  ,ft :call cscope#find('t', expand('<cword>'))<CR>
     " e: Find this egrep pattern
-"    nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+   nnoremap  ,fe :call cscope#find('e', expand('<cword>'))<CR>
     " f: Find this file
 "    nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
     " i: Find files #including this file
@@ -220,3 +221,26 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 "quickfix
 map ,cl :lcl<CR>
 
+""RainbowParenthese
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"gdb
+" nnoremap <F4> :GdbFromVimRun <CR>
+" nnoremap <F5> :GdbFromVimStep <CR>
+" nnoremap <F6> :GdbFromVimNext <CR>
+" nnoremap <F7> :GdbFromVimAddBreakpoint <CR>
+" nnoremap <F8> :GdbFromFromDeleteBreakpoint <CR>
+" nnoremap <F9> :GdbFromVimClear <CR>
+
+"syntax detect============================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
