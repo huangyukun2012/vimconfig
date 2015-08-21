@@ -22,7 +22,7 @@ syntax on "打开高亮
 set sw=4
 set tabstop=4 "让一个tab等于4个空格
 set vb t_vb=
-
+set cursorline
 set wrap
 set autoindent
 
@@ -138,7 +138,6 @@ endfunc
 
 "===============================Plugins============================================
 filetype plugin indent on
-let g:airline#extensions#bufferline#enabled = 0
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -176,6 +175,7 @@ endif
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
 let g:airline_section_b = '%{getcwd()}'
+" let g:airline_section_b += '%{getfilename()}'
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -236,11 +236,13 @@ au Syntax * RainbowParenthesesLoadBraces
 " nnoremap <F9> :GdbFromVimClear <CR>
 
 "syntax detect============================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+func!	StaticSyntax()
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+endfunc
