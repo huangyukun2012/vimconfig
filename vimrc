@@ -25,6 +25,13 @@ set vb t_vb=
 set cursorline
 set wrap
 set autoindent
+set list
+" 设置tab和空格样式
+set lcs=tab:\|\ ,nbsp:%,trail:-
+" 设定行首tab为灰色
+highlight LeaderTab guifg=#666666
+" 匹配行首tab
+match LeaderTab /^\t/
 
 set hlsearch "高亮显示结果
 set incsearch "在输入要搜索的文字时，vim会实时匹配
@@ -236,13 +243,13 @@ au Syntax * RainbowParenthesesLoadBraces
 " nnoremap <F9> :GdbFromVimClear <CR>
 
 "syntax detect============================
-func!	StaticSyntax()
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
+" func!	StaticSyntax()
+" 	set statusline+=%#warningmsg#
+" 	set statusline+=%{SyntasticStatuslineFlag()}
+" 	set statusline+=%*
 
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 0
-endfunc
+" 	let g:syntastic_always_populate_loc_list = 1
+" 	let g:syntastic_auto_loc_list = 1
+" 	let g:syntastic_check_on_open = 1
+" 	let g:syntastic_check_on_wq = 0
+" endfunc
