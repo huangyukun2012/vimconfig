@@ -1,44 +1,49 @@
-if(has("win32") || has("win95") || has("win64") || has("win16")) "判定当前操作系统类型
+if(has("win32") || has("win95") || has("win64") || has("win16")) "get the type of current os.
     let g:iswindows=1
 else
     let g:iswindows=0
 endif
 
-"颜色与行显示的设定
+" color and line
 set nu
 set t_Co=256
 set bg=dark
 " colorscheme solarized
 colorscheme desert
-" autocmd BufEnter * lcd %:p:h
 
-set nocompatible "不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题
+"vim with vi, set it to nocompatible, or you may have some problems
+set nocompatible
 
+" syntax highlight.
 syntax enable
-syntax on "打开高亮
-"set fdm=syntax
+syntax on
 
-"缩进
-set sw=4
-set tabstop=4 "让一个tab等于4个空格
-set vb t_vb=
-set cursorline
-set wrap
 set autoindent
+
+set sw=4
+" tab = 4 whitespace
+set tabstop=4
+set vb t_vb=
+" list the tab and whitespace
 set list
-" 设置tab和空格样式
+" make tab and space printable
 set lcs=tab:\|\ ,nbsp:%,trail:-
-" 设定行首tab为灰色
+
+" set the color of leader Tab to grey.
 highlight LeaderTab guifg=#666666
-" 匹配行首tab
+" match leader tab.
 match LeaderTab /^\t/
 
-set hlsearch "高亮显示结果
-set incsearch "在输入要搜索的文字时，vim会实时匹配
-set backspace=indent,eol,start whichwrap+=<,>,[,] "允许退格键的使用
+set cursorline
+set wrap
 
-if(g:iswindows==1) "允许鼠标的使用
-    "防止linux终端下无法拷贝
+" search hight, runtime match for search.
+set hlsearch
+set incsearch
+
+set backspace=indent,eol,start whichwrap+=<,>,[,]
+
+if(g:iswindows==1)
     if has('mouse')
         set mouse=a
     endif
@@ -46,7 +51,7 @@ if(g:iswindows==1) "允许鼠标的使用
 endif
 
 "front
-set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦
+set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI 
 set gfw=幼圆:h10:cGB2312
 
 "encoding
@@ -54,8 +59,7 @@ set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 
-"=========================================快捷键设置===============================================
-
+"=========================================setting for shorcut===============================================
 nmap ,g			"+p 
 imap [ 			[]<left>
 imap ( 			()<left>
@@ -76,7 +80,7 @@ set tags=tags;
 "close scratch when complete
 " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-"=========================================begin 函数定义:文件编译与运行============================================
+"=========================================compile and run============================================
 
 map <S-F5> 		:call Debug()<cr>
 map <F5> 		:call RunProgram()<cr>
@@ -86,32 +90,28 @@ map <F8> 		:call CompileDir() <cr>
 func! PthreadCompile()
 	exec "w"
 	if &filetype == 'c'
-		exec "!color_compile gcc  % -g -o %< -lpthread"
+		exec "!gcc  % -g -o %< -lpthread"
 	endif
 	if &filetype == 'cpp'
-		exec "!color_compile g++ % -g -o %< -lpthread"
+		exec "!g++ % -g -o %< -lpthread"
 	endif
-	exec "!chmod +x %<"
 endfunc
 
 
 func! Compile() 
-exec "w" 
-if &filetype == 'c' 
-	exec "!color_compile gcc -std=c99 % -g -o %<"
-	exec "!chmod +x %<"
-
-endif 
-if &filetype == 'cpp' 
-	exec "!color_compile g++ -std=c++11 % -g -o %< "
-	exec "!chmod +x %< "
-endif
-if &filetype == 'go'
-	exec "!go build %"
-endif
-if &filetype == 'md'
-	exec "!md2html  %"
-endif
+	exec "w" 
+	if &filetype == 'c' 
+		exec "!gcc -std=c99 % -g -o %<"
+	endif 
+	if &filetype == 'cpp' 
+		exec "!g++ -std=c++11 % -g -o %< "
+	endif
+	if &filetype == 'go'
+		exec "!go build %"
+	endif
+	if &filetype == 'md'
+		exec "!md2html  %"
+	endif
 endfunc 
 
 func! CompileDir()
@@ -122,26 +122,29 @@ func! CompileDir()
 endfunc
 
 func RunProgram() 
-if &filetype == 'md'
-	exec "!chromium-browser %<"
-else
-	exec "w" 
-	exec "!./%<"
-endif
-endfunc 
+	if &filetype == 'md'
+		exec "!chromium-browser %<"
+	else
+		exec "w" 
+		exec "!./%<"
+	endif
+endfunc
 
 func Debug()
 	exec "w"
 	if &filetype == 'c'
 		exec "!gdb ./%<"
 	endif
+	if &filetype == 'cpp'
+		exec "!gdb ./%<"
+	endif
 endfunc
 
 func RunPython() 
-exec "w" 
-exec "!chmod +x %"
-exec "!python %"
-endfunc 
+	exec "w"
+	exec "!chmod +x %"
+	exec "!python %"
+endfunc
 
 "===============================Plugins============================================
 filetype plugin indent on
@@ -194,7 +197,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 
-"taglist 设置
+"taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
