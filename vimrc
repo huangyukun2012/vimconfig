@@ -3,7 +3,7 @@ if(has("win32") || has("win95") || has("win64") || has("win16")) "get the type o
 else
     let g:iswindows=0
 endif
-
+		
 " color and line
 set nu
 set t_Co=256
