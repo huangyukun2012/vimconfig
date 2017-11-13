@@ -1,3 +1,4 @@
+"test
 if(has("win32") || has("win95") || has("win64") || has("win16")) "get the type of current os.
     let g:iswindows=1
 else
